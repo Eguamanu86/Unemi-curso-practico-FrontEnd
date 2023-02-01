@@ -3,6 +3,7 @@ class CuentaBancaria {
     this.titular = titular
     this.tipoCuenta = tipoCuenta
     this.cuentaProducto = cuentaProducto
+    this.fechaApertura = new Date().toLocaleString()
   }
 }
 

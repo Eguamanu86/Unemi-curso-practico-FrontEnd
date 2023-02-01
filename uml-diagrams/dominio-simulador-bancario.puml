@@ -1,0 +1,52 @@
+@startuml
+
+class Persona{
+  cedula: string
+  nombres : string
+}
+
+class Titular {
+  fechaIngreso: date
+}
+
+class TipoCuenta{
+    codigo: string
+    nombre: string
+}
+
+class CuentaAhorro {
+  numero: string
+  saldo: double
+  interesMensual: double
+}
+
+class CuentaCorriente {
+  numero: string
+  saldo: double
+}
+
+class InversionCDT {
+  numero: string
+  interesMensual: double
+}
+
+class CuentaBancaria{
+    titular: Titular
+    tipo: TipoCuenta
+    cuentaProducto: object
+}
+
+class RespositorioCuentaBanco{
+    cuentas: list
+    transacciones: list
+}
+
+class UseCaseSimuladorBancario{
+    respositorioCuentaBanco: RespositorioCuentaBanco
+
+}
+
+
+Persona <|--  Cliente
+
+@enduml

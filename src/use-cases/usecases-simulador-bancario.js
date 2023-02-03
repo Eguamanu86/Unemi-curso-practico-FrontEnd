@@ -17,7 +17,7 @@ class CasoUsoSimuladorBancario {
 
   crearCuenta(data) {
 
-    const cuenta = this.repositorioCuentasBanco.getExisteTitularAndTipoCuenta(
+    const cuenta = this.repositorioCuentasBanco.getExisteTitularAndTipoCuenta2(
       data.cedula,
       data.tipo
     )
@@ -76,6 +76,15 @@ class CasoUsoSimuladorBancario {
         )
     }
 
+  }
+
+  depositarMonto(numeroCuenta, monto) {
+    return this.repositorioCuentasBanco.depositarMonto(numeroCuenta, monto)
+  }
+
+
+  debitarMonto(numeroCuenta, monto) {
+    return this.repositorioCuentasBanco.debitarMonto(numeroCuenta, monto)
   }
 
 }

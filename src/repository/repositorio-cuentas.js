@@ -6,7 +6,7 @@ class RepositorioCuentasBanco {
 
   crearCuenta(cuenta) {
     this.cuentas.push(cuenta)
-    console.log(this.cuentas)
+    //console.log(this.cuentas)
   }
 
   getGeneraNumCuenta() {
@@ -20,6 +20,34 @@ class RepositorioCuentasBanco {
     ).shift()
   }
 
+  getExisteTitularAndTipoCuenta2(cedula, tipoCuenta) {
+    for (const cuenta of this.cuentas) {
+      if (cuenta.titular.cedula === cedula && cuenta.tipoCuenta.codigo === tipoCuenta) {
+        return cuenta
+      }
+    }
+  }
+
+  depositarMonto(numeroCuenta, monto) {
+    for (const cuenta of this.cuentas) {
+      if (cuenta.cuentaProducto.numero === numeroCuenta) {
+        cuenta.cuentaProducto.saldo += Number(monto)
+        return cuenta
+      }
+    }
+  }
+
+  debitarMonto(numeroCuenta, monto) {
+    for (const cuenta of this.cuentas) {
+      if (cuenta.cuentaProducto.numero === numeroCuenta) {
+        if ((cuenta.cuentaProducto.saldo - Number(monto)) >= 0) {
+          cuenta.cuentaProducto.saldo -= Number(monto)
+          return cuenta
+        }
+
+      }
+    }
+  }
 
 }
 export default RepositorioCuentasBanco

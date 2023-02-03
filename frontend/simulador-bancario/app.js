@@ -1,4 +1,4 @@
-// importacion de mmodelos de clases.
+// importacion de modelos de clases.
 import RepositorioCuentasBanco from '../../src/repository/repositorio-cuentas.js'
 import { CasoUsoSimuladorBancario } from '../../src/use-cases/usecases-simulador-bancario.js'
 import { RenderTemplate } from './table-render.js'
@@ -27,5 +27,34 @@ formRegistroCuenta.addEventListener('submit', (event) => {
   casoUsoSimuladorBancario.crearCuenta(data)
   // renderizar datos en la tabla HTML
   tbody.innerHTML = renderTemplate.render()
-
+  //console.log(renderTemplate.render())
 });
+
+
+tbody.addEventListener('click', (event) => {
+  event.preventDefault();
+  // capturamos la accion-depositar monto
+  if (event.target.closest('a[rel="accion-depositar"]')) {
+
+    const monto = prompt("Ingrese el monto a Depositar: ", "0.00")
+
+    if (isFinite(monto) && monto) {
+      const numeroCuenta = event.target.dataset.cuenta
+      casoUsoSimuladorBancario.depositarMonto(numeroCuenta, monto)
+      tbody.innerHTML = renderTemplate.render()
+    }
+
+  } // capturamos la accion-bebitar monto
+  else if (event.target.closest('a[rel="accion-debitar"]')) {
+
+    const monto = prompt("Ingrese el monto a Debitar: ", "0.00")
+
+    if (isFinite(monto) && monto) {
+      const numeroCuenta = event.target.dataset.cuenta
+      casoUsoSimuladorBancario.debitarMonto(numeroCuenta, monto)
+      tbody.innerHTML = renderTemplate.render()
+    }
+
+  }
+
+})

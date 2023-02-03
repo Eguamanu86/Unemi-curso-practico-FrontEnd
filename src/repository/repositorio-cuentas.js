@@ -6,7 +6,7 @@ class RepositorioCuentasBanco {
 
   crearCuenta(cuenta) {
     this.cuentas.push(cuenta)
-    //console.log(this.cuentas)
+    console.log(this.cuentas)
   }
 
   getGeneraNumCuenta() {

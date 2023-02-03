@@ -9,9 +9,11 @@ const casoUsoSimuladorBancario = new CasoUsoSimuladorBancario(repositorioCuentas
 const renderTemplate = new RenderTemplate(repositorioCuentasBanco.cuentas)
 
 // se agrega la referencia a los constroles del formulario HTML
-const tbody = document.querySelector("#id-table-cuentas-banco > tbody");
+const tbody = document.querySelector("#id-table-cuentas-banco > tbody")
+const tfoot = document.querySelector("#id-table-cuentas-banco > tfoot")
+
 const formRegistroCuenta = document.querySelector('#id-form-registro-titular-cuenta')
-const selectTipo = document.getElementById('id-select-tipo-cuenta');
+const selectTipo = document.getElementById('id-select-tipo-cuenta')
 
 // capturamos en evento submit del formulario HTML addEventListener
 formRegistroCuenta.addEventListener('submit', (event) => {
@@ -26,8 +28,8 @@ formRegistroCuenta.addEventListener('submit', (event) => {
   // modelo de negocio agregar cuentas bancarias
   casoUsoSimuladorBancario.crearCuenta(data)
   // renderizar datos en la tabla HTML
-  tbody.innerHTML = renderTemplate.render()
-  //console.log(renderTemplate.render())
+  tbody.innerHTML = renderTemplate.renderTbody()
+  tfoot.innerHTML = renderTemplate.renderTfoot()
 });
 
 
@@ -41,7 +43,8 @@ tbody.addEventListener('click', (event) => {
     if (isFinite(monto) && monto) {
       const numeroCuenta = event.target.dataset.cuenta
       casoUsoSimuladorBancario.depositarMonto(numeroCuenta, monto)
-      tbody.innerHTML = renderTemplate.render()
+      tbody.innerHTML = renderTemplate.renderTbody()
+      tfoot.innerHTML = renderTemplate.renderTfoot()
     }
 
   } // capturamos la accion-bebitar monto
@@ -52,7 +55,8 @@ tbody.addEventListener('click', (event) => {
     if (isFinite(monto) && monto) {
       const numeroCuenta = event.target.dataset.cuenta
       casoUsoSimuladorBancario.debitarMonto(numeroCuenta, monto)
-      tbody.innerHTML = renderTemplate.render()
+      tbody.innerHTML = renderTemplate.renderTbody()
+      tfoot.innerHTML = renderTemplate.renderTfoot()
     }
 
   }

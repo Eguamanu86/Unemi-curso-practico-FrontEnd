@@ -2,10 +2,13 @@ export class RenderTemplate {
 
   constructor(cuentas) {
     this.cuentas = cuentas
+    this.montoTotal = 0
   }
 
-  render() {
+  renderTbody() {
+    this.montoTotal = 0
     return this.cuentas.map((cuenta) => {
+      this.montoTotal += cuenta.cuentaProducto.saldo
       return `<tr>
             <td><b>${cuenta.cuentaProducto.numero}</b></td>
             <td>${cuenta.titular.cedula}</td>
@@ -28,5 +31,13 @@ export class RenderTemplate {
             </td>
         </tr>`
     }).join('')
+  }
+
+  renderTfoot() {
+    return `<tr>
+        <td colspan="5" align="right"><b>Monto Total: </b></td>
+        <td colspan="2">$ ${this.montoTotal}</td>
+        <td></td>
+    </tr>`
   }
 }

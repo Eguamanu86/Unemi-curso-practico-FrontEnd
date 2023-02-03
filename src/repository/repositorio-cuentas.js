@@ -9,7 +9,7 @@ class RepositorioCuentasBanco {
     console.log(this.cuentas)
   }
 
-  getNumCuenta() {
+  getGeneraNumCuenta() {
     let numeroCuenta = this.cuentas.length + 1
     return numeroCuenta.toString().padStart(10, '0')
   }

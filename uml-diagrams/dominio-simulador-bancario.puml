@@ -10,24 +10,25 @@ class Titular {
 }
 
 class TipoCuenta{
-    codigo: string
-    nombre: string
+  codigo: string
+  nombre: string
+}
+
+class Cuenta {
+  numero: string
+  saldo: double
 }
 
 class CuentaAhorro {
-  numero: string
-  saldo: double
-  interesMensual: double
 }
 
 class CuentaCorriente {
-  numero: string
-  saldo: double
+  interesMensual: double
 }
 
 class InversionCDT {
-  numero: string
   interesMensual: double
+  fechaCierre: date
 }
 
 class CuentaBancaria{
@@ -36,17 +37,30 @@ class CuentaBancaria{
     cuentaProducto: object
 }
 
-class RespositorioCuentaBanco{
+class RepositorioCuentasBanco{
     cuentas: list
     transacciones: list
 }
 
-class UseCaseSimuladorBancario{
-    respositorioCuentaBanco: RespositorioCuentaBanco
-
+class CasoUsoSimuladorBancario{
+  respositorioCuentaBanco: RespositorioCuentaBanco
+  + crear(cuenta)
+  + editar(numero, cuenta)
+  + eliminar(numero)
 }
 
 
-Persona <|--  Cliente
+Persona <|--  Titular
+Cuenta  <|--  CuentaAhorro
+Cuenta  <|--  CuentaCorriente
+Cuenta  <|--  InversionCDT
+
+CuentaBancaria *-- Persona
+CuentaBancaria *-- TipoCuenta
+CuentaBancaria *-- Cuenta
+
+CasoUsoSimuladorBancario o-- RepositorioCuentasBanco
+CasoUsoSimuladorBancario ..> CuentaBancaria
+
 
 @enduml

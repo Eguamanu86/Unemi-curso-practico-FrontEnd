@@ -1,10 +1,3 @@
-class Cuenta {
-  constructor(numero, saldo) {
-    this.numero = numero
-    this.saldo = Number(saldo)
-  }
-}
-
 class TipoCuenta {
   constructor(codigo, nombre) {
     this.codigo = codigo
@@ -12,10 +5,15 @@ class TipoCuenta {
   }
 }
 
+class Cuenta {
+  constructor(numero, saldo) {
+    this.numero = numero
+    this.saldo = Number(saldo)
+  }
+}
 class CuentaAhorro extends Cuenta {
   constructor(numero, saldo) {
     super(numero, saldo)
-    this.interesMensual = 0
   }
 }
 
@@ -28,10 +26,10 @@ class CuentaCorriente extends Cuenta {
 }
 
 class InversionCDT extends Cuenta {
-  constructor(numero, saldo, interesMensual, mesApertura) {
+  constructor(numero, saldo, interesMensual, fechaCierre) {
     super(numero, saldo)
     this.interesMensual = Number(interesMensual)
-    this.mesApertura = mesApertura
+    this.fechaCierre = fechaCierre
   }
 }
 

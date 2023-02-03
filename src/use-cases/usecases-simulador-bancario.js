@@ -1,13 +1,16 @@
 import Titular from '../entity/titular.js'
+
 import {
   TipoCuenta,
   CuentaAhorro,
   CuentaCorriente,
   InversionCDT
 } from '../entity/cuenta-producto.js'
+
 import CuentaBancaria from '../entity/cuenta-banco.js'
 
 class CasoUsoSimuladorBancario {
+
   constructor(repositorioCuentasBanco) {
     this.repositorioCuentasBanco = repositorioCuentasBanco
   }
@@ -20,10 +23,11 @@ class CasoUsoSimuladorBancario {
     )
 
     if (!cuenta) {
+
       const titular = new Titular(
         data.cedula,
-        data.nombres,
-        data.apellidos,
+        data.nombres.toUpperCase(),
+        data.apellidos.toUpperCase(),
         data.genero
       )
 
@@ -32,11 +36,7 @@ class CasoUsoSimuladorBancario {
         data.tipoNombre
       )
 
-      const cuentaProducto = this.#getCuentaProducto(
-        tipoCuenta.codigo,
-        data.saldo,
-        data.interes
-      )
+      const cuentaProducto = this.#getCuentaProducto(data)
 
       const cuentaBancaria = new CuentaBancaria(
         titular,
@@ -45,35 +45,34 @@ class CasoUsoSimuladorBancario {
       )
 
       this.repositorioCuentasBanco.crearCuenta(cuentaBancaria)
+
     }
     else {
       alert('Existe Titular con Tipo de cuenta repetido')
 
     }
 
-
   }
 
-  #getCuentaProducto(tipo, saldo, interesMensual) {
-    const numeroCuenta = this.repositorioCuentasBanco.getNumCuenta()
-    switch (tipo) {
+  #getCuentaProducto(data) {
+    const numeroCuenta = this.repositorioCuentasBanco.getGeneraNumCuenta()
+    switch (data.tipo) {
       case "AHORRO":
         return new CuentaAhorro(
           numeroCuenta,
-          saldo
+          data.saldo
         )
       case "CORRIENTE":
         return new CuentaCorriente(
           numeroCuenta,
-          saldo,
-          interesMensual
+          data.saldo,
+          data.interes
         )
       case "INVERSION":
         return new InversionCDT(
           numeroCuenta,
-          saldo,
-          interesMensual,
-          2
+          data.saldo,
+          data.interes
         )
     }
 

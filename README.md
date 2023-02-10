@@ -31,3 +31,10 @@ El programa debe permitir al usuario:
 10.	Retirar un monto de dinero en la cuenta de ahorros del cliente.
 
 11.	Avanzar en un mes la simulación.
+
+## Modelo de clases:
+
+![Optional Text](./uml-diagrams/simulador-bancario-uml.PNG)
+
+## interfaz grafica del simulador bancario:
+![Optional Text](./uml-diagrams/pantalla.PNG)

@@ -8,20 +8,20 @@
 //   // covertimos los datos en objeto key: values (diccionario)
 //   const data = Object.fromEntries(formdata.entries())
 
-//   const response = await fetch('https://dummyjson.com/auth/login', {
-//     method: 'POST',
-//     headers: { 'Content-Type': 'application/json' },
-//     body: JSON.stringify(data)
-//   })
+  const response = await fetch('https://dummyjson.com/auth/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  })
 
-//   if (!response.ok) {
-//     alert("Credenciales incorrectas..")
-//     return
-//   }
+  if (!response.ok) {
+    alert("Credenciales incorrectas..")
+    return
+  }
 
-//   const userData = await response.json()
-//   console.log(userData)
-//   window.location.href = 'index.html'
+  const userData = await response.json()
+  console.log(userData)
+  window.location.href = 'index.html'
 
 // });
 

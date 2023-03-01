@@ -1,0 +1,52 @@
+@startuml
+
+' Entidades modelo Productos
+class Tipo{
+    codigo: string
+    nombre: string
+    impuesto: numeric
+}
+
+class Proveedor {
+    codigo: string
+    nombre: string
+}
+
+class Producto{
+    codigo: string
+    nombre: string
+    descripcion: string
+    stockDisponible: integer
+    stockMinino: integer
+    precio: numeric
+    tipoProducto: Tipo
+    proveedor: Proveedor
+
+    + toString()
+}
+
+class RepositorioProducto{
+    productos: List
+    + constructor()
+}
+
+class CasoUsoPoducto{
+  respositorioProducto: RepositorioProducto
+
+  + constructor(respositorioProducto)
+  + crear(producto)
+  + editar(codigo, producto)
+  + eliminar(codigo)
+
+}
+
+' Asociación
+Producto  --> Tipo
+Producto  --> Proveedor
+
+' Agregacion
+CasoUsoPoducto "1" o-- RepositorioProducto
+
+RepositorioProducto "1" --> "0..*" Producto
+
+@enduml
